@@ -1,0 +1,11 @@
+kuma.telscan.xyz {
+    reverse_proxy uptime-kuma:3001
+    encode gzip
+    tls nick@telcoin.org
+}
+
+status.telscan.xyz {
+    reverse_proxy uptime-kuma:3001
+    encode gzip
+    tls nick@telcoin.org
+}
