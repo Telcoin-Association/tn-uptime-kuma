@@ -9,3 +9,9 @@ status.telscan.xyz {
     encode gzip
     tls nick@telcoin.org
 }
+
+status.adiri.telcoin.network {
+    reverse_proxy uptime-kuma:3001
+    encode gzip
+    tls nick@telcoin.org
+}
