@@ -1,0 +1,25 @@
+# Copy to deploy.config and fill in. deploy.config is gitignored.
+# Sourced by deploy-updates.sh. Holds NO secret: the Kuma admin password lives in
+# GCP Secret Manager and is fetched at deploy time (see KUMA_SECRET below and the
+# "Security model" section of the README).
+
+# --- GCP / VM target ---
+GCP_PROJECT="tn-devops-sandbox"
+GCP_ZONE="us-central1-a"
+VM_INSTANCE="kuma"
+VM_USER="nick"
+
+# Paths on the VM
+VM_REPO="/home/nick/tn-uptime-kuma"   # git checkout (synced from local each deploy)
+VM_COMPOSE_DIR="/home/nick/kuma"      # holds docker-compose.yml + the live Caddyfile
+
+# --- Uptime Kuma admin (for monitor sync) ---
+KUMA_URL="http://localhost:3001"      # reached from inside the VM
+KUMA_USERNAME="admin"
+# Name of the GCP Secret Manager secret holding the Kuma admin password.
+# deploy-updates.sh fetches it locally (`gcloud secrets versions access`) and streams it
+# to the VM over stdin — the password never lands on disk or on the SSH command line.
+# One-time setup:
+#   gcloud secrets create kuma-admin-password --replication-policy=automatic --project="$GCP_PROJECT"
+#   printf %s '<admin-password>' | gcloud secrets versions add kuma-admin-password --data-file=- --project="$GCP_PROJECT"
+KUMA_SECRET="kuma-admin-password"

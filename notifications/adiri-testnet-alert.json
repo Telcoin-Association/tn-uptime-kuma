@@ -1,0 +1,13 @@
+{
+  "name": "Adiri Testnet Alert",
+  "isDefault": true,
+  "type": "slack",
+  "telegramServerUrl": "${KUMA_NOTIF_ADIRI_TESTNET_ALERT_TELEGRAMSERVERURL}",
+  "slackIncludeGroupName": true,
+  "slackwebhookURL": "${KUMA_NOTIF_ADIRI_TESTNET_ALERT_SLACKWEBHOOKURL}",
+  "slackchannel": "tn-adiri-alerts",
+  "slackiconemo": "\u2757",
+  "slackchannelnotify": true,
+  "applyExisting": false,
+  "slackrichmessage": true
+}

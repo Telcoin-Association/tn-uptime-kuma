@@ -1,0 +1,38 @@
+{
+  "slug": "testnet",
+  "title": "Adiri Testnet Network Status",
+  "description": "",
+  "icon": "/upload/logo1.png?t=1778755063900",
+  "theme": "dark",
+  "autoRefreshInterval": 60,
+  "published": true,
+  "showTags": true,
+  "domainNameList": [
+    "status.telscan.xyz",
+    "status.adiri.telcoin.network"
+  ],
+  "customCSS": "body {\n    font-family: 'Inter', sans-serif;\n}\n\nbody.dark {\n    background-color: #0f1117 !important;\n}\n\na, .link {\n    color: #00BAFF !important;\n}\n\n.btn-primary, .btn-primary:hover {\n    background-color: #00BAFF !important;\n    border-color: #00BAFF !important;\n    color: #000000 !important;\n}\n\n.monitor-name {\n    font-weight: 600;\n}\n\n.hero-text, h1 {\n    color: #00BAFF !important;\n}\n\n.status-bar-bg {\n    background-color: #1a1f2e !important;\n}\n\n.p-3.shadow-box.big-padding.period-pill {\n    border-left: 4px solid #00BAFF;\n}\n\n/* Incident box */\n.shadow-box.alert.incident.bg-primary {\n    background-color: #1a1f2e !important;\n    border: 1px solid #00BAFF !important;\n    color: #ffffff !important;\n}\n\n.shadow-box.alert.incident.bg-primary .alert-heading,\n.shadow-box.alert.incident.bg-primary strong,\n.shadow-box.alert.incident.bg-primary .content {\n    color: #ffffff !important;\n}\n\n.shadow-box.alert.incident.bg-primary .form-text {\n    color: #aaaaaa !important;\n}",
+  "footerText": "For support contact the Telcoin Network Dev team",
+  "showPoweredBy": false,
+  "analyticsId": null,
+  "analyticsScriptUrl": null,
+  "analyticsType": null,
+  "showCertificateExpiry": true,
+  "showOnlyLastHeartbeat": false,
+  "rssTitle": null,
+  "groups": [
+    {
+      "name": "Adiri Testnet",
+      "weight": 1,
+      "monitorNames": [
+        "\u26d3 Consensus Block Progress",
+        "\ud83d\udd35 Testnet \u2014 RPC Nodes",
+        "V1 (Los Angeles)",
+        "V2 (Sydney)",
+        "V3 (Montreal)",
+        "V4 (Netherlands)",
+        "V5 (London)"
+      ]
+    }
+  ]
+}

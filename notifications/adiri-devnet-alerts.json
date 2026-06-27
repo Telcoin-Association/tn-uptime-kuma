@@ -1,0 +1,10 @@
+{
+  "name": "Adiri Devnet Alerts",
+  "isDefault": false,
+  "type": "slack",
+  "telegramServerUrl": "${KUMA_NOTIF_ADIRI_DEVNET_ALERTS_TELEGRAMSERVERURL}",
+  "slackIncludeGroupName": true,
+  "slackwebhookURL": "${KUMA_NOTIF_ADIRI_DEVNET_ALERTS_SLACKWEBHOOKURL}",
+  "slackrichmessage": true,
+  "applyExisting": false
+}

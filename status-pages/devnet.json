@@ -1,0 +1,34 @@
+{
+  "slug": "devnet",
+  "title": "Adiri Devnet Network Status",
+  "description": null,
+  "icon": "/icon.svg",
+  "theme": "auto",
+  "autoRefreshInterval": 300,
+  "published": true,
+  "showTags": false,
+  "domainNameList": [],
+  "customCSS": "body {\n  \n}\n",
+  "footerText": null,
+  "showPoweredBy": false,
+  "analyticsId": null,
+  "analyticsScriptUrl": null,
+  "analyticsType": null,
+  "showCertificateExpiry": false,
+  "showOnlyLastHeartbeat": false,
+  "rssTitle": null,
+  "groups": [
+    {
+      "name": "Services",
+      "weight": 1,
+      "monitorNames": [
+        "Devnet V1 (Los Angeles)",
+        "Devnet V2 (Sydney)",
+        "Devnet V3 (Montreal)",
+        "Devnet V4 (Netherlands)",
+        "Devnet V5 Observer (London)",
+        "\ud83d\udfe9 Devnet RPC Nodes"
+      ]
+    }
+  ]
+}

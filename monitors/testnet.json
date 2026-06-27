@@ -3,143 +3,355 @@
   "notificationList": [],
   "monitorList": [
     {
-      "name": "testnet node1 TCP 43174",
-      "type": "tcp-port",
-      "hostname": "34.102.122.126",
-      "port": 43174,
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "description": "testnet node1-adiri health listener (--healthcheck 43174). Direct probe from Kuma VM."
-    },
-    {
-      "name": "testnet node2 TCP 43174",
-      "type": "tcp-port",
-      "hostname": "34.40.242.29",
-      "port": 43174,
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "description": "testnet validator-2 health listener (--healthcheck 43174). Direct probe from Kuma VM."
-    },
-    {
-      "name": "testnet node3 TCP 43174",
-      "type": "tcp-port",
-      "hostname": "35.203.41.59",
-      "port": 43174,
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "description": "testnet validator-3 health listener (--healthcheck 43174). Direct probe from Kuma VM."
-    },
-    {
-      "name": "testnet node4 TCP 43174",
-      "type": "tcp-port",
-      "hostname": "34.141.203.172",
-      "port": 43174,
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "description": "testnet validator-4 health listener (--healthcheck 43174). Direct probe from Kuma VM."
-    },
-    {
-      "name": "testnet node5 TCP 43174",
-      "type": "tcp-port",
-      "hostname": "34.105.191.161",
-      "port": 43174,
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "description": "testnet validator-5 health listener (--healthcheck 43174). Direct probe from Kuma VM."
-    },
-    {
-      "name": "testnet node1 RPC",
-      "type": "keyword",
-      "url": "https://node1.telcoin.network",
-      "method": "POST",
-      "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_blockNumber\",\"params\":[],\"id\":1}",
-      "headers": "{\"Content-Type\":\"application/json\"}",
-      "keyword": "result",
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "accepted_statuscodes": ["200-299"],
-      "description": "testnet node1 public RPC — eth_blockNumber returns a result."
-    },
-    {
-      "name": "testnet node2 RPC",
-      "type": "keyword",
-      "url": "https://node2.telcoin.network",
-      "method": "POST",
-      "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_blockNumber\",\"params\":[],\"id\":1}",
-      "headers": "{\"Content-Type\":\"application/json\"}",
-      "keyword": "result",
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "accepted_statuscodes": ["200-299"],
-      "description": "testnet node2 public RPC — eth_blockNumber returns a result."
-    },
-    {
-      "name": "testnet node3 RPC",
-      "type": "keyword",
-      "url": "https://node3.telcoin.network",
-      "method": "POST",
-      "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_blockNumber\",\"params\":[],\"id\":1}",
-      "headers": "{\"Content-Type\":\"application/json\"}",
-      "keyword": "result",
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "accepted_statuscodes": ["200-299"],
-      "description": "testnet node3 public RPC — eth_blockNumber returns a result."
-    },
-    {
-      "name": "testnet node4 RPC",
-      "type": "keyword",
-      "url": "https://node4.telcoin.network",
-      "method": "POST",
-      "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_blockNumber\",\"params\":[],\"id\":1}",
-      "headers": "{\"Content-Type\":\"application/json\"}",
-      "keyword": "result",
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "accepted_statuscodes": ["200-299"],
-      "description": "testnet node4 public RPC — eth_blockNumber returns a result."
-    },
-    {
-      "name": "testnet node5 RPC",
-      "type": "keyword",
-      "url": "https://node5.telcoin.network",
-      "method": "POST",
-      "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_blockNumber\",\"params\":[],\"id\":1}",
-      "headers": "{\"Content-Type\":\"application/json\"}",
-      "keyword": "result",
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "accepted_statuscodes": ["200-299"],
-      "description": "testnet node5 public RPC — eth_blockNumber returns a result."
-    },
-    {
-      "name": "testnet consensus",
-      "type": "push",
-      "pushToken": "UH7ebacL2x",
+      "name": "\u26d3 Testnet \u2014 Consensus",
+      "type": "group",
       "interval": 60,
       "retryInterval": 60,
       "maxretries": 1,
-      "description": "Fed by consensus_monitor.sh testnet (cron). UP while consensus advances; message lists per-node detail. Token must match targets/testnet.env PUSH_URL."
+      "timeout": 48,
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "\ud83d\udd35 Testnet \u2014 RPC Nodes",
+      "type": "group",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 1,
+      "timeout": 48,
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "\ud83d\udfe2 Testnet \u2014 Validators",
+      "type": "group",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 1,
+      "timeout": 48,
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "V1 (Los Angeles)",
+      "type": "tcp-port",
+      "groupName": "\ud83d\udfe2 Testnet \u2014 Validators",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "hostname": "34.102.122.126",
+      "port": 43174,
+      "url": "http://34.102.122.126:43174/health",
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "V2 (Sydney)",
+      "type": "tcp-port",
+      "groupName": "\ud83d\udfe2 Testnet \u2014 Validators",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "hostname": "34.40.242.29",
+      "port": 43174,
+      "url": "http://34.40.242.29:43174/health",
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "V3 (Montreal)",
+      "type": "tcp-port",
+      "groupName": "\ud83d\udfe2 Testnet \u2014 Validators",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "hostname": "35.203.41.59",
+      "port": 43174,
+      "url": "http://35.203.41.59:43174/health",
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "V4 (Netherlands)",
+      "type": "tcp-port",
+      "groupName": "\ud83d\udfe2 Testnet \u2014 Validators",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "hostname": "34.141.203.172",
+      "port": 43174,
+      "url": "http://34.141.203.172:43174/health",
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "V5 (London)",
+      "type": "tcp-port",
+      "groupName": "\ud83d\udfe2 Testnet \u2014 Validators",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "hostname": "34.105.191.161",
+      "port": 43174,
+      "url": "http://34.105.191.161:43174/health",
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "node1 \u2014 Block Height",
+      "type": "keyword",
+      "groupName": "\ud83d\udd35 Testnet \u2014 RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node1.telcoin.network",
+      "keyword": "result",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "node1 \u2014 RPC Up/Down",
+      "type": "http",
+      "groupName": "\ud83d\udd35 Testnet \u2014 RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node1.telcoin.network",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "node2 \u2014 Block Height",
+      "type": "keyword",
+      "groupName": "\ud83d\udd35 Testnet \u2014 RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node2.telcoin.network",
+      "keyword": "result",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "node2 \u2014 RPC Up/Down",
+      "type": "http",
+      "groupName": "\ud83d\udd35 Testnet \u2014 RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node2.telcoin.network",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "node3 \u2014 Block Height",
+      "type": "keyword",
+      "groupName": "\ud83d\udd35 Testnet \u2014 RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node3.telcoin.network",
+      "keyword": "result",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "node3 \u2014 RPC Up/Down",
+      "type": "http",
+      "groupName": "\ud83d\udd35 Testnet \u2014 RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node3.telcoin.network",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "node4 \u2014 Block Height",
+      "type": "keyword",
+      "groupName": "\ud83d\udd35 Testnet \u2014 RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node4.telcoin.network",
+      "keyword": "result",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "node4 \u2014 RPC Up/Down",
+      "type": "http",
+      "groupName": "\ud83d\udd35 Testnet \u2014 RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node4.telcoin.network",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "node5 \u2014 Block Height",
+      "type": "keyword",
+      "groupName": "\ud83d\udd35 Testnet \u2014 RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node5.telcoin.network",
+      "keyword": "result",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "node5 \u2014 RPC Up/Down",
+      "type": "http",
+      "groupName": "\ud83d\udd35 Testnet \u2014 RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node5.telcoin.network",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
+    },
+    {
+      "name": "\u26d3 Consensus Block Progress",
+      "type": "push",
+      "groupName": "\u26d3 Testnet \u2014 Consensus",
+      "interval": 300,
+      "retryInterval": 60,
+      "maxretries": 2,
+      "timeout": 48,
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Testnet Alert"
+      ]
     }
   ]
 }

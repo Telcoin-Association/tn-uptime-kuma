@@ -1,0 +1,5 @@
+# Pinned to the version installed on the Kuma VM — known-good against Uptime Kuma 2.3.2.
+# kuma_config.py deliberately works around this library's Kuma-2.x gaps (see
+# fetch_status_page / save_status_page / call_stripping_unknown); bumping this pin can
+# silently break those paths, so change it only after re-verifying export+sync on the VM.
+uptime-kuma-api==1.2.1

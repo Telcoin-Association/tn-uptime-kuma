@@ -42,9 +42,13 @@ if ! command -v jq >/dev/null 2>&1; then
 fi
 
 # shellcheck source=/dev/null
-source "${ENV_FILE}"   # provides PUSH_URL, NODES=(...), THRESHOLD
+source "${ENV_FILE}"   # committed config: NODES=(...), THRESHOLD, placeholder PUSH_URL
+# Optional VM-only override carrying the REAL PUSH_URL (secret push token); gitignored,
+# sourced AFTER the committed env so its PUSH_URL wins. See README "Security model".
+# shellcheck source=/dev/null
+[ -f "${ENV_FILE}.local" ] && source "${ENV_FILE}.local"
 
-: "${PUSH_URL:?targets/${NETWORK}.env must set PUSH_URL}"
+: "${PUSH_URL:?targets/${NETWORK}.env(.local) must set PUSH_URL}"
 : "${THRESHOLD:=60}"
 if [ "${#NODES[@]}" -eq 0 ]; then
     echo "$(date): targets/${NETWORK}.env defines no NODES" >&2

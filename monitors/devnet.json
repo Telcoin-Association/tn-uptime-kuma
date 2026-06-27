@@ -3,143 +3,350 @@
   "notificationList": [],
   "monitorList": [
     {
-      "name": "devnet node1 TCP 43174",
-      "type": "tcp-port",
-      "hostname": "35.236.51.63",
-      "port": 43174,
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "description": "devnet validator-1 health listener (--healthcheck 43174). Direct probe from Kuma VM."
-    },
-    {
-      "name": "devnet node2 TCP 43174",
-      "type": "tcp-port",
-      "hostname": "34.40.150.166",
-      "port": 43174,
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "description": "devnet validator-2 health listener (--healthcheck 43174). Direct probe from Kuma VM."
-    },
-    {
-      "name": "devnet node3 TCP 43174",
-      "type": "tcp-port",
-      "hostname": "34.19.189.1",
-      "port": 43174,
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "description": "devnet validator-3 health listener (--healthcheck 43174). Direct probe from Kuma VM."
-    },
-    {
-      "name": "devnet node4 TCP 43174",
-      "type": "tcp-port",
-      "hostname": "34.7.93.35",
-      "port": 43174,
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "description": "devnet validator-4 health listener (--healthcheck 43174). Direct probe from Kuma VM."
-    },
-    {
-      "name": "devnet node5 TCP 43174",
-      "type": "tcp-port",
-      "hostname": "35.242.150.70",
-      "port": 43174,
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "description": "devnet observer-5 health listener (--healthcheck 43174). Direct probe from Kuma VM."
-    },
-    {
-      "name": "devnet node1 RPC",
-      "type": "keyword",
-      "url": "https://node1.devnet.telcoin.network",
-      "method": "POST",
-      "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_blockNumber\",\"params\":[],\"id\":1}",
-      "headers": "{\"Content-Type\":\"application/json\"}",
-      "keyword": "result",
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "accepted_statuscodes": ["200-299"],
-      "description": "devnet node1 public RPC — eth_blockNumber returns a result."
-    },
-    {
-      "name": "devnet node2 RPC",
-      "type": "keyword",
-      "url": "https://node2.devnet.telcoin.network",
-      "method": "POST",
-      "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_blockNumber\",\"params\":[],\"id\":1}",
-      "headers": "{\"Content-Type\":\"application/json\"}",
-      "keyword": "result",
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "accepted_statuscodes": ["200-299"],
-      "description": "devnet node2 public RPC — eth_blockNumber returns a result."
-    },
-    {
-      "name": "devnet node3 RPC",
-      "type": "keyword",
-      "url": "https://node3.devnet.telcoin.network",
-      "method": "POST",
-      "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_blockNumber\",\"params\":[],\"id\":1}",
-      "headers": "{\"Content-Type\":\"application/json\"}",
-      "keyword": "result",
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "accepted_statuscodes": ["200-299"],
-      "description": "devnet node3 public RPC — eth_blockNumber returns a result."
-    },
-    {
-      "name": "devnet node4 RPC",
-      "type": "keyword",
-      "url": "https://node4.devnet.telcoin.network",
-      "method": "POST",
-      "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_blockNumber\",\"params\":[],\"id\":1}",
-      "headers": "{\"Content-Type\":\"application/json\"}",
-      "keyword": "result",
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "accepted_statuscodes": ["200-299"],
-      "description": "devnet node4 public RPC — eth_blockNumber returns a result."
-    },
-    {
-      "name": "devnet node5 RPC",
-      "type": "keyword",
-      "url": "https://node5.devnet.telcoin.network",
-      "method": "POST",
-      "body": "{\"jsonrpc\":\"2.0\",\"method\":\"eth_blockNumber\",\"params\":[],\"id\":1}",
-      "headers": "{\"Content-Type\":\"application/json\"}",
-      "keyword": "result",
-      "interval": 60,
-      "retryInterval": 60,
-      "maxretries": 2,
-      "timeout": 16,
-      "accepted_statuscodes": ["200-299"],
-      "description": "devnet node5 public RPC — eth_blockNumber returns a result."
-    },
-    {
-      "name": "devnet consensus",
-      "type": "push",
-      "pushToken": "7BS3yBebzN",
+      "name": "\ud83d\udd34 Devnet Consensus",
+      "type": "group",
       "interval": 60,
       "retryInterval": 60,
       "maxretries": 1,
-      "description": "Fed by consensus_monitor.sh devnet (cron). UP while consensus advances; message lists per-node detail. Token must match targets/devnet.env PUSH_URL."
+      "timeout": 48,
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "\ud83d\udfe3 Devnet Validators",
+      "type": "group",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 1,
+      "timeout": 48,
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "\ud83d\udfe9 Devnet RPC Nodes",
+      "type": "group",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 1,
+      "timeout": 48,
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "Devnet V1 (Los Angeles)",
+      "type": "tcp-port",
+      "groupName": "\ud83d\udfe3 Devnet Validators",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "hostname": "35.236.51.63",
+      "port": 43174,
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "Devnet V2 (Sydney)",
+      "type": "tcp-port",
+      "groupName": "\ud83d\udfe3 Devnet Validators",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "hostname": "node2.devnet.telcoin.network",
+      "port": 43174,
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "Devnet V3 (Montreal)",
+      "type": "tcp-port",
+      "groupName": "\ud83d\udfe3 Devnet Validators",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "hostname": "34.19.189.1",
+      "port": 43174,
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "Devnet V4 (Netherlands)",
+      "type": "tcp-port",
+      "groupName": "\ud83d\udfe3 Devnet Validators",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "hostname": "34.7.93.35",
+      "port": 43174,
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "Devnet V5 Observer (London)",
+      "type": "tcp-port",
+      "groupName": "\ud83d\udfe3 Devnet Validators",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "hostname": "35.242.150.70",
+      "port": 43174,
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "node1.devnet \u2014 Block Height",
+      "type": "keyword",
+      "groupName": "\ud83d\udfe9 Devnet RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node1.devnet.telcoin.network",
+      "keyword": "result",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "node1.devnet \u2014 RPC Up/Down",
+      "type": "http",
+      "groupName": "\ud83d\udfe9 Devnet RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node1.devnet.telcoin.network",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "node2.devnet \u2014 Block Height",
+      "type": "keyword",
+      "groupName": "\ud83d\udfe9 Devnet RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node2.devnet.telcoin.network",
+      "keyword": "result",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "node2.devnet \u2014 RPC Up/Down",
+      "type": "http",
+      "groupName": "\ud83d\udfe9 Devnet RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node2.devnet.telcoin.network",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "node3.devnet \u2014 Block Height",
+      "type": "keyword",
+      "groupName": "\ud83d\udfe9 Devnet RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node3.devnet.telcoin.network",
+      "keyword": "result",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "node3.devnet \u2014 RPC Up/Down",
+      "type": "http",
+      "groupName": "\ud83d\udfe9 Devnet RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node3.devnet.telcoin.network",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "node4.devnet \u2014 Block Height",
+      "type": "keyword",
+      "groupName": "\ud83d\udfe9 Devnet RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node4.devnet.telcoin.network",
+      "keyword": "result",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "node4.devnet \u2014 RPC Up/Down",
+      "type": "http",
+      "groupName": "\ud83d\udfe9 Devnet RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node4.devnet.telcoin.network",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "node5.devnet \u2014 Block Height",
+      "type": "keyword",
+      "groupName": "\ud83d\udfe9 Devnet RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node5.devnet.telcoin.network",
+      "keyword": "result",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "node5.devnet \u2014 RPC Up/Down",
+      "type": "http",
+      "groupName": "\ud83d\udfe9 Devnet RPC Nodes",
+      "interval": 60,
+      "retryInterval": 60,
+      "maxretries": 3,
+      "timeout": 48,
+      "url": "https://node5.devnet.telcoin.network",
+      "method": "POST",
+      "body": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+      "headers": "{\n    \"Content-Type\": \"application/json\"\n}",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
+    },
+    {
+      "name": "\ud83d\udd34 Devnet Consensus Block Progress",
+      "type": "push",
+      "groupName": "\ud83d\udd34 Devnet Consensus",
+      "interval": 120,
+      "retryInterval": 60,
+      "maxretries": 2,
+      "timeout": 48,
+      "method": "GET",
+      "accepted_statuscodes": [
+        "200-299"
+      ],
+      "notificationNames": [
+        "Adiri Devnet Alerts"
+      ]
     }
   ]
 }

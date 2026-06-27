@@ -1,0 +1,21 @@
+# Local deploy config — gitignored. The Kuma admin password is in GCP Secret Manager
+# (fetched at deploy time), so this holds no secret, but keep it local: it carries the
+# VM coordinates, admin username, and the name of the Secret Manager secret.
+deploy.config
+
+# Real notification secrets (webhook URLs/tokens/passwords) — VM-only, never commit
+notifications/secrets.json
+
+# Real consensus push URLs (secret push tokens) — VM-only overrides, never commit
+targets/*.env.local
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Pre-sync Kuma DB snapshots (written on the VM under backups/)
+backups/
+
+# Local logs / scratch
+*.log
+scratchpad/
